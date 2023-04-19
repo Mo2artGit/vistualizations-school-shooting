@@ -47,7 +47,10 @@ const Graph3 = () => {
   }, []);
 
   return (
-    <svg id="graph" ref={svgRef}></svg>
+    <>
+      <h1>Heat map of Year vs Month</h1>
+      <svg id="graph" ref={svgRef}></svg>
+    </>
   );
 }
 

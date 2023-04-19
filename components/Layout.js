@@ -5,6 +5,7 @@ import Title from './Title';
 import Graph1 from './Graph1';
 import Graph2 from './Graph2';
 import Graph3 from './Graph3';
+import Footer from './Footer';
 
 const Layout = ({ children }) => {
     return (
@@ -12,7 +13,7 @@ const Layout = ({ children }) => {
             <Head>
                 <title>My Single Page Application</title>
             </Head>
-            <nav className="fixed bottom-0 w-full bg-gray-900 py-4">
+            <nav className="fixed bottom-0 w-full bg-gray-300 py-4">
                 <ul className="flex justify-center space-x-8">
                     <li>
                         <a href="#title" className="text-white hover:text-gray-400">Title</a>
@@ -25,6 +26,9 @@ const Layout = ({ children }) => {
                     </li>
                     <li>
                         <a href="#component3" className="text-white hover:text-gray-400">Component 3</a>
+                    </li>
+                    <li>
+                        <a href="#footer" className="text-white hover:text-gray-400">Footer</a>
                     </li>
                 </ul>
             </nav>
@@ -40,6 +44,9 @@ const Layout = ({ children }) => {
                 </section>
                 <section id="component3" className="flex-grow bg-gray-300 h-screen">
                     <Graph3 />
+                </section>
+                <section id="footer" className="flex-grow bg-gray-100 h-screen">
+                    <Footer />
                 </section>
             </main>
         </Fragment>

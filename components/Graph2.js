@@ -27,11 +27,14 @@ const Graph2 = () => {
   }, []);
 
   return (
-    <svg
-      ref={svgRef}
-      width={1200}
-      height={800}
-    />
+    <>
+      <h2>Map visualization for all incidents through the U.S.</h2>
+      <svg
+        ref={svgRef}
+        width={1200}
+        height={800}
+      />
+    </>
   );
 };
 

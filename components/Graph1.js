@@ -47,7 +47,10 @@ const Graph1 = () => {
   }, []);
 
   return (
-    <svg id="graph" ref={svgRef}></svg>
+    <>
+      <h1>School Shooting by Type over Years</h1>
+      <svg id="graph" ref={svgRef}></svg>
+    </>
   );
 }
 
