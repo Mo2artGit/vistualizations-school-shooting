@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
     return (
         <Fragment>
             <Head>
-                <title>My Single Page Application</title>
+                <title>School Shooting in the U.S.</title>
             </Head>
             <nav className="fixed bottom-0 w-full bg-gray-300 py-4">
                 <ul className="flex justify-center space-x-8">
