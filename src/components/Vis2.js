@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import usData from '../datas/us-data.json';
 
-const Graph2 = () => {
+const Vis2 = () => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -38,4 +38,4 @@ const Graph2 = () => {
   );
 };
 
-export default Graph2;
+export default Vis2;

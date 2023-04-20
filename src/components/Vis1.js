@@ -1,21 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-// import shootingCauses from  '../datas/graph1/shooting-causes.csv';
+import shootingCauses from  '../datas/graph1/shooting-causes.csv';
 
-const Graph1 = () => {
+const Vis1 = () => {
 
   const svgRef = useRef(null);
 
-  d3.csv('/workspaces/vistualizations-school-shooting/datas/graph1/shooting-causes.csv').then(data=>{
+  d3.csv(shootingCauses).then(data=>{
     console.log(data);
   });
 
   useEffect(() => {
-
-
-    d3.csv('/workspaces/vistualizations-school-shooting/datas/graph1/shooting-causes.csv').then(data=>{
-      console.log(data);
-    });
 
     const width = 1200;
     const height = 800;
@@ -40,4 +35,4 @@ const Graph1 = () => {
   );
 }
 
-export default Graph1;
+export default Vis1;
