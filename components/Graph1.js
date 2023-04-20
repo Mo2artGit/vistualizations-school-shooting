@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import loveActually from './love-actually.json';
+import loveActually from  '../datas/love-actually.json';
 
 const Graph1 = () => {
   const svgRef = useRef(null);

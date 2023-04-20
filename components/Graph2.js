@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import usData from './us-data.json';
+import usData from '../datas/us-data.json';
 
 const Graph2 = () => {
   const svgRef = useRef();
