@@ -67,6 +67,32 @@ const Vis2 = () => {
             .attr("opacity", 0.5)
             .select("title")
             .remove();
+        })
+        .on("click", function () {
+          // When the circle is clicked, trigger an animation
+          d3.select(this)
+            .transition()
+            .duration(500)
+            .attr("r", 10)
+            .transition()
+            .duration(1000)
+            .attr("r", 5);
+          // When the circle is clicked, populate the tooltip container with the relevant information
+          d3.select("#school")
+            .text(d.school);
+          d3.select("#city")
+            .text(d.city);
+          d3.select("#state")
+            .text(d.state);
+          d3.select("#date")
+            .text(d.date);
+          d3.select("#time")
+            .text(d.time);
+          d3.select("#killed")
+            .text(d.killed);
+          d3.select("#injured")
+            .text(d.injured);
+            
         });
     });
 
@@ -94,7 +120,7 @@ const Vis2 = () => {
       .enter()
       .append("text")
       .attr("x", 20)
-      .attr("y", (d, i) => i * 20 + 10)
+      .attr("y", (d, i) => i * 20 + 6)
       .text(d => d);
 
     // Style the legend
@@ -114,12 +140,26 @@ const Vis2 = () => {
 
   return (
     <>
-      <h2>Map visualization for all incidents through the U.S.</h2>
-      <svg
-        ref={svgRef}
-        width={1200}
-        height={800}
-      />
+      <h2 className="ml-3 text-4xl font-extrabold">All incidents through the U.S. <small className="ml-2 font-semibold text-gray-500 dark:text-gray-400">2009-2018</small></h2>
+      <div className="ml-2 flex flex-wrap justify-start items-center">
+        <p className="mr-4"><strong>School:</strong> <span id="school"></span></p>
+        <p className="mr-4"><strong>City:</strong> <span id="city"></span></p>
+        <p className="mr-4"><strong>State:</strong> <span id="state"></span></p>
+        <p className="mr-4"><strong>Date:</strong> <span id="date"></span></p>
+        <p className="mr-4"><strong>Time:</strong> <span id="time"></span></p>
+        <p className="mr-4"><strong>Killed:</strong> <span id="killed"></span></p>
+        <p><strong>Injured:</strong> <span id="injured"></span></p>
+      </div>
+
+      <div className="flex justify-center">
+        <svg
+          ref={svgRef}
+          width={1000}
+          height={550}
+        />
+      </div>
+
+      <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">Deliver great service experiences fast - without the complexity of traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease.</p>
     </>
   );
 };
