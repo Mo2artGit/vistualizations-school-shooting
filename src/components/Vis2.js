@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 
@@ -7,6 +7,7 @@ import dataset from '../datas/graph2/dataset.csv';
 
 const Vis2 = () => {
   const svgRef = useRef();
+  const [selectedType, setSelectedType] = useState("");
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -32,11 +33,19 @@ const Vis2 = () => {
       .join("path")
       .attr("d", pathGenerator)
 
+      // Remove all existing circles on the SVG element
+      svg.selectAll("circle").remove();
+
     // Load the dataset and display data points on the map
     d3.csv(dataset, (d) => {
 
       // Skip this data point if the values are not valid
       if (!d.LATCOD || !d.LONCOD) {
+        return;
+      }
+
+      // Skip this data point if it doesn't match the selected type
+      if (selectedType && d.type !== selectedType) {
         return;
       }
 
@@ -73,7 +82,7 @@ const Vis2 = () => {
           d3.select(this)
             .transition()
             .duration(500)
-            .attr("r", 10)
+            .attr("r", d.killed + d.injured)
             .transition()
             .duration(1000)
             .attr("r", 5);
@@ -92,7 +101,7 @@ const Vis2 = () => {
             .text(d.killed);
           d3.select("#injured")
             .text(d.injured);
-            
+
         });
     });
 
@@ -136,7 +145,7 @@ const Vis2 = () => {
       .attr("alignment-baseline", "middle");
 
 
-  }, []);
+  }, [selectedType]);
 
   return (
     <>
@@ -150,7 +159,19 @@ const Vis2 = () => {
         <p className="mr-4"><strong>Killed:</strong> <span id="killed"></span></p>
         <p><strong>Injured:</strong> <span id="injured"></span></p>
       </div>
-
+      <div className="ml-2 flex flex-wrap justify-start items-center">
+        <select onChange={(e) => setSelectedType(e.target.value)}>
+          <option value="">All types</option>
+          <option value="High School">High School</option>
+          <option value="Middle School">Middle School</option>
+          <option value="Elementary School">Elementary School</option>
+          <option value="K-12">K-12</option>
+          <option value="PreK-12">PreK-12</option>
+          <option value="Grades 7-8">Grades 7-8</option>
+          <option value="Grades 7-12">Grades 7-12</option>
+          <option value="K-8">K-8</option>
+        </select>
+      </div>
       <div className="flex justify-center">
         <svg
           ref={svgRef}
