@@ -33,12 +33,13 @@ const Vis2 = () => {
       .join("path")
       .attr("d", pathGenerator)
 
-      // Remove all existing circles on the SVG element
-      svg.selectAll("circle").remove();
+    // Remove all existing circles on the SVG element
+    svg.selectAll("circle").remove();
 
     // Load the dataset and display data points on the map
-    d3.csv(dataset, (d) => {
-
+    d3.csv(dataset, (d, i) => {
+      // Use the index i to calculate the delay for each circle
+      const delay = i * 50;
       // Skip this data point if the values are not valid
       if (!d.LATCOD || !d.LONCOD) {
         return;
@@ -57,35 +58,27 @@ const Vis2 = () => {
       const [x, y] = projection([+d.LONCOD, +d.LATCOD]);
 
       // Append a circle to the SVG element for each data point, colored by "type"
-      svg.append("circle")
+      const circle = svg.append("circle")
         .attr("cx", x)
         .attr("cy", y)
         .attr("r", 5)
         .attr("fill", colorScale(d.type))
-        .attr("opacity", 0.5)
+        .attr("opacity", 0)
         .on("mouseover", function () {
+          // Set a maximum size for the circle
+          var maxRadius = 40;
+          // Calculate the radius
+          var radius = 7 + parseInt(d.killed) + parseInt(d.injured);
+          // If the radius is greater than the maximum size, set it to the maximum size
+          if (radius > maxRadius) {
+            radius = maxRadius;
+          }
           // When the mouse is over the circle, change its opacity and show a tooltip
           d3.select(this)
-            .attr("opacity", 1)
-            .append("title")
-            .text(`${d.school}, ${d.city}, ${d.state}\n${d.date}, ${d.time}\nKilled: ${d.killed}, Injured: ${d.injured}`);
-        })
-        .on("mouseout", function () {
-          // When the mouse is out of the circle, change its opacity back and remove the tooltip
-          d3.select(this)
-            .attr("opacity", 0.5)
-            .select("title")
-            .remove();
-        })
-        .on("click", function () {
-          // When the circle is clicked, trigger an animation
-          d3.select(this)
             .transition()
-            .duration(500)
-            .attr("r", d.killed + d.injured)
-            .transition()
-            .duration(1000)
-            .attr("r", 5);
+            .duration(400)
+            .attr("r", radius)
+            .attr("opacity", 1);
           // When the circle is clicked, populate the tooltip container with the relevant information
           d3.select("#school")
             .text(d.school);
@@ -101,8 +94,26 @@ const Vis2 = () => {
             .text(d.killed);
           d3.select("#injured")
             .text(d.injured);
-
+          d3.select("#urbanrural")
+            .text(d.urbanrural);
+        })
+        .on("mouseout", function () {
+          // When the mouse is out of the circle, change its opacity back and remove the tooltip
+          d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 6)
+            .attr("opacity", 0.5);
+        })
+        .on("click", function () {
+          // When the circle is clicked, do nothing yet
         });
+      // Add a transition to animate the circle's opacity and radius
+      circle.transition()
+        .delay(delay)
+        .duration(500)
+        .attr("r", 6)
+        .attr("opacity", 0.8);
     });
 
     // Create a legend for the color scale
@@ -157,7 +168,8 @@ const Vis2 = () => {
         <p className="mr-4"><strong>Date:</strong> <span id="date"></span></p>
         <p className="mr-4"><strong>Time:</strong> <span id="time"></span></p>
         <p className="mr-4"><strong>Killed:</strong> <span id="killed"></span></p>
-        <p><strong>Injured:</strong> <span id="injured"></span></p>
+        <p className="mr-4"><strong>Injured:</strong> <span id="injured"></span></p>
+        <p className="mr-4"><strong>Urbanrural:</strong> <span id="urbanrural"></span></p>
       </div>
       <div className="ml-2 flex flex-wrap justify-start items-center">
         <select onChange={(e) => setSelectedType(e.target.value)}>
@@ -179,7 +191,6 @@ const Vis2 = () => {
           height={550}
         />
       </div>
-
       <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">Deliver great service experiences fast - without the complexity of traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease.</p>
     </>
   );
