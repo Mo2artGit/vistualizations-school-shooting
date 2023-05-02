@@ -3,7 +3,6 @@ import './App.css';
 import TitlePage from './components/TitlePage';
 import Vis1 from './components/Vis1';
 import Vis2 from './components/Vis2';
-import Vis3 from './components/Vis3';
 import Footer from './components/Footer';
 import { Link } from 'react-scroll';
 
@@ -14,24 +13,21 @@ const App = () => {
       <nav className="fixed bottom-0 w-full bg-gray-800 py-4">
         <ul className="flex justify-center space-x-8">
           <li>
-            <Link to="title" smooth={true} duration={500} className="text-white hover:text-gray-400">Title</Link>
+            <Link to="title" smooth={true} duration={500} className="text-white hover:text-gray-400">Introduction</Link>
           </li>
           <li>
-            <Link to="component1" smooth={true} duration={500} className="text-white hover:text-gray-400">Component 1</Link>
+            <Link to="component1" smooth={true} duration={500} className="text-white hover:text-gray-400">1</Link>
           </li>
           <li>
-            <Link to="component2" smooth={true} duration={500} className="text-white hover:text-gray-400">Component 2</Link>
+            <Link to="component2" smooth={true} duration={500} className="text-white hover:text-gray-400">2</Link>
           </li>
           <li>
-            <Link to="component3" smooth={true} duration={500} className="text-white hover:text-gray-400">Component 3</Link>
-          </li>
-          <li>
-            <Link to="footer" smooth={true} duration={500} className="text-white hover:text-gray-400">Footer</Link>
+            <Link to="footer" smooth={true} duration={500} className="text-white hover:text-gray-400">Source</Link>
           </li>
         </ul>
       </nav>
       <main className="flex flex-col min-h-screen">
-        <section id="title" className="flex-grow bg-gray-300 h-screen">
+        <section id="title" className="flex-grow bg-gray-200 h-screen">
           <TitlePage />
         </section>
         <section id="component1" className="flex-grow bg-gray-100 h-screen">
@@ -39,9 +35,6 @@ const App = () => {
         </section>
         <section id="component2" className="flex-grow bg-gray-200 h-screen">
           <Vis2 />
-        </section>
-        <section id="component3" className="flex-grow bg-gray-300 h-screen">
-          <Vis3 />
         </section>
         <section id="footer" className="flex-grow bg-gray-100 h-screen">
           <Footer />

@@ -78,7 +78,8 @@ const Vis2 = () => {
             .transition()
             .duration(400)
             .attr("r", radius)
-            .attr("opacity", 1);
+            .attr("opacity", 1)
+            .style("cursor", "pointer");
           // When the circle is clicked, populate the tooltip container with the relevant information
           d3.select("#school")
             .text(d.school);
@@ -160,7 +161,7 @@ const Vis2 = () => {
 
   return (
     <>
-      <h2 className="ml-3 text-4xl font-extrabold">All incidents through the U.S. <small className="ml-2 font-semibold text-gray-500 dark:text-gray-400">2009-2018</small></h2>
+      <h2 className="ml-3 mb-2 text-4xl font-extrabold">All incidents through the U.S. <small className="ml-2 font-semibold text-gray-500 dark:text-gray-400">2009-2018</small></h2>
       <div className="ml-2 flex flex-wrap justify-start items-center">
         <p className="mr-4"><strong>School:</strong> <span id="school"></span></p>
         <p className="mr-4"><strong>City:</strong> <span id="city"></span></p>
@@ -191,7 +192,7 @@ const Vis2 = () => {
           height={550}
         />
       </div>
-      <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">Deliver great service experiences fast - without the complexity of traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease.</p>
+      <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">The visualization depicting school shooting incidents in the United States from 2009 to 2018 highlights the unfortunate reality of violence in schools. In specific regions of the country, the map displays a concentrated number of incidents. Analysis of the data demonstrates that high schools had the highest number of incidents, followed by middle schools and elementary schools.</p>
     </>
   );
 };
