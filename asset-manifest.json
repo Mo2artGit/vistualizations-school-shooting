@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/visualizations-school-shooting/static/css/main.4f5221ec.css",
-    "main.js": "/visualizations-school-shooting/static/js/main.e8976b40.js",
+    "main.css": "/visualizations-school-shooting/static/css/main.ec8d5cc4.css",
+    "main.js": "/visualizations-school-shooting/static/js/main.1e2d1b98.js",
     "static/js/787.0c42ba68.chunk.js": "/visualizations-school-shooting/static/js/787.0c42ba68.chunk.js",
     "static/media/dataset.csv": "/visualizations-school-shooting/static/media/dataset.5561843cd878e09df92a.csv",
     "static/media/shooting-causes.csv": "/visualizations-school-shooting/static/media/shooting-causes.3e64762deb5675acfe00.csv",
     "index.html": "/visualizations-school-shooting/index.html",
-    "main.4f5221ec.css.map": "/visualizations-school-shooting/static/css/main.4f5221ec.css.map",
-    "main.e8976b40.js.map": "/visualizations-school-shooting/static/js/main.e8976b40.js.map",
+    "main.ec8d5cc4.css.map": "/visualizations-school-shooting/static/css/main.ec8d5cc4.css.map",
+    "main.1e2d1b98.js.map": "/visualizations-school-shooting/static/js/main.1e2d1b98.js.map",
     "787.0c42ba68.chunk.js.map": "/visualizations-school-shooting/static/js/787.0c42ba68.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f5221ec.css",
-    "static/js/main.e8976b40.js"
+    "static/css/main.ec8d5cc4.css",
+    "static/js/main.1e2d1b98.js"
   ]
 }
