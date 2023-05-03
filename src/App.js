@@ -3,6 +3,7 @@ import './App.css';
 import TitlePage from './components/TitlePage';
 import Vis1 from './components/Vis1';
 import Vis2 from './components/Vis2';
+import Vis3 from './components/Vis3';
 import Footer from './components/Footer';
 import { Link } from 'react-scroll';
 
@@ -22,6 +23,9 @@ const App = () => {
             <Link to="component2" smooth={true} duration={500} className="text-white hover:text-gray-400">2</Link>
           </li>
           <li>
+            <Link to="component3" smooth={true} duration={500} className="text-white hover:text-gray-400">3</Link>
+          </li>
+          <li>
             <Link to="footer" smooth={true} duration={500} className="text-white hover:text-gray-400">Source</Link>
           </li>
         </ul>
@@ -35,6 +39,9 @@ const App = () => {
         </section>
         <section id="component2" className="flex-grow bg-gray-200 h-screen">
           <Vis2 />
+        </section>
+        <section id="component3" className="flex-grow bg-gray-300 h-screen">
+          <Vis3 />
         </section>
         <section id="footer" className="flex-grow bg-gray-100 h-screen">
           <Footer />
