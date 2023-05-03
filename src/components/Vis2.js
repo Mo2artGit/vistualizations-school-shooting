@@ -8,6 +8,7 @@ import dataset from '../datas/graph2/dataset.csv';
 const Vis2 = () => {
   const svgRef = useRef();
   const [selectedType, setSelectedType] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -39,7 +40,7 @@ const Vis2 = () => {
     // Load the dataset and display data points on the map
     d3.csv(dataset, (d, i) => {
       // Use the index i to calculate the delay for each circle
-      const delay = i * 50;
+      const delay = i * 2;
       // Skip this data point if the values are not valid
       if (!d.LATCOD || !d.LONCOD) {
         return;
@@ -47,6 +48,11 @@ const Vis2 = () => {
 
       // Skip this data point if it doesn't match the selected type
       if (selectedType && d.type !== selectedType) {
+        return;
+      }
+
+      // Filter the data based on the selected year
+      if (selectedYear && d.year !== selectedYear) {
         return;
       }
 
@@ -157,12 +163,12 @@ const Vis2 = () => {
       .attr("alignment-baseline", "middle");
 
 
-  }, [selectedType]);
+  }, [selectedType, selectedYear]);
 
   return (
     <>
-      <h2 className="ml-3 mb-2 text-4xl font-extrabold">All incidents through the U.S. <small className="ml-2 font-semibold text-gray-500 dark:text-gray-400">2009-2018</small></h2>
-      <div className="ml-2 flex flex-wrap justify-start items-center">
+      <h2 className="ml-3 mb-5 text-4xl font-extrabold">All incidents through the U.S. <small className="ml-2 font-semibold text-gray-500 dark:text-gray-400">2009-2018</small></h2>
+      <div className="ml-3 flex flex-wrap justify-start items-center">
         <p className="mr-4"><strong>School:</strong> <span id="school"></span></p>
         <p className="mr-4"><strong>City:</strong> <span id="city"></span></p>
         <p className="mr-4"><strong>State:</strong> <span id="state"></span></p>
@@ -172,7 +178,7 @@ const Vis2 = () => {
         <p className="mr-4"><strong>Injured:</strong> <span id="injured"></span></p>
         <p className="mr-4"><strong>Urbanrural:</strong> <span id="urbanrural"></span></p>
       </div>
-      <div className="ml-2 flex flex-wrap justify-start items-center">
+      <div className="ml-3 flex flex-wrap justify-start items-center">
         <select onChange={(e) => setSelectedType(e.target.value)}>
           <option value="">All types</option>
           <option value="High School">High School</option>
@@ -184,6 +190,19 @@ const Vis2 = () => {
           <option value="Grades 7-12">Grades 7-12</option>
           <option value="K-8">K-8</option>
         </select>
+        <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+          <option value="">All Years</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+        </select>
       </div>
       <div className="flex justify-center">
         <svg
@@ -192,7 +211,26 @@ const Vis2 = () => {
           height={550}
         />
       </div>
-      <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">The visualization depicting school shooting incidents in the United States from 2009 to 2018 highlights the unfortunate reality of violence in schools. In specific regions of the country, the map displays a concentrated number of incidents. Analysis of the data demonstrates that high schools had the highest number of incidents, followed by middle schools and elementary schools.</p>
+      <label className="mx-5 text-gray-500" htmlFor="year-slider">Selected Year: {selectedYear || "All Years"}</label>
+      <div className="mx-5 flex items-center space-x-4">
+        <button className="px-4 py-1 bg-gray-500 rounded-md hover:bg-gray-300" onClick={() => setSelectedYear("")}>All Years</button>
+        <span>2009</span>
+        <input
+          className="w-full appearance-none bg-gray-500 h-1 rounded-full"
+          type="range"
+          id="year-slider"
+          name="year-slider"
+          min="2009"
+          max="2018"
+          step="1"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+        />
+        <span>2018</span>
+      </div>
+
+
+      <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">The visualization depicting school shooting incidents in the United States from 2009 to 2018 highlights the unfortunate reality of violence in schools. In specific regions of the country, the map displays a concentrated number of incidents. Analysis of the data demonstrates that high schools had the highest number of incidents, followed by middle schools and elementary schools. Moreover, the visualization also illustrates that the frequency of school shooting incidents has been increasing throughout the years. The map shows a clear trend of more incidents occurring in recent years than in earlier years. It is worth noting that the number of elementary school incidents is relatively low compared to what we often hear in the news.</p>
     </>
   );
 };
