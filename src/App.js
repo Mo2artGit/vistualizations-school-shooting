@@ -40,7 +40,7 @@ const App = () => {
         <section id="component2" className="flex-grow bg-gray-200 h-screen">
           <Vis2 />
         </section>
-        <section id="component3" className="flex-grow bg-gray-300 h-screen">
+        <section id="component3" className="flex-grow bg-gray-300">
           <Vis3 />
         </section>
         <section id="footer" className="flex-grow bg-gray-100 h-screen">
