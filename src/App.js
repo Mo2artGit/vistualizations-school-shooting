@@ -14,19 +14,19 @@ const App = () => {
       <nav className="fixed bottom-0 w-full bg-gray-800 py-4">
         <ul className="flex justify-center space-x-8">
           <li>
-            <Link to="title" smooth={true} duration={500} className="text-white hover:text-gray-400">Introduction</Link>
+            <Link to="title" smooth={true} duration={500} className="text-white hover:text-gray-400 cursor-pointer">Introduction</Link>
           </li>
           <li>
-            <Link to="component1" smooth={true} duration={500} className="text-white hover:text-gray-400">1</Link>
+            <Link to="component1" smooth={true} duration={500} className="text-white hover:text-gray-400 cursor-pointer">1</Link>
           </li>
           <li>
-            <Link to="component2" smooth={true} duration={500} className="text-white hover:text-gray-400">2</Link>
+            <Link to="component2" smooth={true} duration={500} className="text-white hover:text-gray-400 cursor-pointer">2</Link>
           </li>
           <li>
-            <Link to="component3" smooth={true} duration={500} className="text-white hover:text-gray-400">3</Link>
+            <Link to="component3" smooth={true} duration={500} className="text-white hover:text-gray-400 cursor-pointer">3</Link>
           </li>
           <li>
-            <Link to="footer" smooth={true} duration={500} className="text-white hover:text-gray-400">Source</Link>
+            <Link to="footer" smooth={true} duration={500} className="text-white hover:text-gray-400 cursor-pointer">Source</Link>
           </li>
         </ul>
       </nav>

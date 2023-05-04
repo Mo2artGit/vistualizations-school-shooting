@@ -96,11 +96,13 @@ const Vis3 = () => {
         <>
             <h2 className="ml-3 mb-5 text-4xl font-extrabold">Incidents during time of day</h2>
             <DayOfWeekButtons />
-            <svg
-                ref={svgRef}
-                width={1000}
-                height={800}
-            />
+            <div className="flex justify-center">
+                <svg
+                    ref={svgRef}
+                    width={1000}
+                    height={800}
+                />
+            </div>
             <p className="mx-10 text-lg text-gray-500 dark:text-gray-600">
                 The bar chart reveals that the majority of the incidents occur during the time when
                 students are either going to school or returning home from school. Specifically, the chart indicates that there is a spike in incidents during the
